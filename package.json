@@ -5,12 +5,17 @@
 	"repository": "l",
 	"author": "HanSeo0507 <i.hansu.lee@gmail.com>",
 	"license": "MIT",
+	"scripts": {
+		"start:dev": "cross-env NODE_ENV=development webpack serve --config ./config/webpack.development.js",
+		"build": ""
+	},
 	"dependencies": {
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.16.5",
+		"@babel/plugin-transform-runtime": "^7.16.8",
 		"@babel/preset-env": "^7.16.5",
 		"@babel/preset-react": "^7.16.5",
 		"@babel/preset-typescript": "^7.16.5",
