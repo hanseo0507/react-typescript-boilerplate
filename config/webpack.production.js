@@ -12,9 +12,6 @@ module.exports = merge(common, {
 			new TerserPlugin({
 				minify: TerserPlugin.uglifyJsMinify,
 				terserOptions: {
-					format: {
-						comments: false,
-					},
 					compress: {
 						drop_console: true,
 					},
@@ -22,5 +19,14 @@ module.exports = merge(common, {
 				extractComments: false,
 			}),
 		],
+		splitChunks: {
+			cacheGroups: {
+				vendors: {
+					test: /[\\/]node_modules[\\/]/i,
+					chunks: "all",
+				},
+			},
+		},
+		runtimeChunk: { name: "runtime" },
 	},
 });

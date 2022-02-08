@@ -3,6 +3,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+require("dotenv").config();
 
 const isProduction = process.env.NODE_ENV === "production";
 
@@ -79,5 +81,9 @@ module.exports = {
 			filename: "index.html",
 		}),
 		new ForkTsCheckerWebpackPlugin(),
+		new BundleAnalyzerPlugin({
+			analyzerMode: isProduction ? "static" : "server",
+			openAnalyzer: isProduction,
+		}),
 	],
 };
