@@ -2,20 +2,20 @@ const path = require("path");
 const { merge } = require("webpack-merge");
 const common = require("./webpack.common");
 
-const HOST = process.env.HOST || "0.0.0.0";
-const PORT = process.env.PROT || 3000;
+const { HOST, PORT } = process.env;
+
+if (!PORT)
+  throw new Error("Can not found PORT in environment variables. Check your .env file process.env.PORT is exist");
 
 module.exports = merge(common, {
-	mode: "development",
-	devtool: "source-map",
-
-	devServer: {
-		//contentBase: path.resolve("public"),
-
-		host: HOST,
-		port: PORT,
-
-		hot: true,
-		historyApiFallback: true,
-	},
+  mode: "development",
+  devServer: {
+    static: {
+      directory: path.resolve("public"),
+    },
+    host: HOST,
+    port: PORT,
+    hot: true,
+    historyApiFallback: true,
+  },
 });
